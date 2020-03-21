@@ -13,8 +13,8 @@ import VVSSLab2.validation.StudentValidator;
 import VVSSLab2.validation.TemaValidator;
 import VVSSLab2.validation.ValidationException;
 import junit.framework.TestCase;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
@@ -45,14 +45,12 @@ public class AppTest
 
     @Test
     public void testStudent() {
-        setup();
         Student student = new Student("1234", "Sanda", 934, "sanda@gmail.com");
         assertEquals(service.addStudent(student), student);
     }
 
     @Test
     public void testStudentFail() {
-        setup();
         Student student = new Student("1234", "Sanda", -934, "sanda@gmail.com");
         Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
 
