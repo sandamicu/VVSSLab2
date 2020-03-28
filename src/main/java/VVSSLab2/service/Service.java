@@ -69,7 +69,7 @@ public class Service {
      * @param id - id-ul studentului
      * @return studentul daca acesta a fost sters sau null daca studentul nu exista
      */
-    public Student deleteStudent(String id){
+    public Student deleteStudent(Integer id){
         if(id == null || id.equals("")) {
             throw new ValidationException("Id-ul nu poate fi null!");
         }
@@ -81,7 +81,7 @@ public class Service {
      * @param id - id-ul studentului
      * @return studentul daca acesta exista sau null altfel
      */
-    public Student findStudent(String id){
+    public Student findStudent(Integer id){
         if(id == null || id.equals("")){
             throw new ValidationException("Id-ul nu poate fi null!");
         }
@@ -163,7 +163,7 @@ public class Service {
      */
     public double addNota(Nota nota, String feedback){
         notaValidator.validate(nota);
-        Student student = studentFileRepository.findOne(nota.getIdStudent());
+        Student student = studentFileRepository.findOne(Integer.parseInt(nota.getIdStudent()));
         Tema tema = temaFileRepository.findOne(nota.getIdTema());
         int predare = calculeazaSPredare(nota.getData());
         if(predare <= tema.getDeadline()){

@@ -2,8 +2,8 @@ package VVSSLab2.domain;
 
 import VVSSLab2.repository.HasID;
 
-public class Student implements HasID<String> {
-    private String idStudent;
+public class Student implements HasID<Integer> {
+    private int idStudent;
     private String nume;
     private int grupa;
     private String email;
@@ -15,7 +15,7 @@ public class Student implements HasID<String> {
      * @param grupa - grupa studentului
      * @param email - emailul unui student
      */
-    public Student(String idStudent, String nume, int grupa, String email) {
+    public Student(int idStudent, String nume, int grupa, String email) {
         this.idStudent = idStudent;
         this.nume = nume;
         this.grupa = grupa;
@@ -25,7 +25,7 @@ public class Student implements HasID<String> {
     /**
      * @return id-ul unui student
      */
-    public String getID() {
+    public Integer getID() {
         return idStudent;
     }
 
@@ -33,7 +33,7 @@ public class Student implements HasID<String> {
      * modifica id-ul unui student
      * @param ID - noul id al studentului
      */
-    public void setID(String ID) {
+    public void setID(Integer ID) {
         this.idStudent = ID;
     }
 

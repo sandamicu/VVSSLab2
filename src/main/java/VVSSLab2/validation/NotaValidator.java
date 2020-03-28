@@ -28,7 +28,7 @@ public class NotaValidator implements Validator<Nota> {
      */
     @Override
     public void validate(Nota nota) throws ValidationException {
-        Student student = studentFileRepository.findOne(nota.getIdStudent());
+        Student student = studentFileRepository.findOne(Integer.parseInt(nota.getIdStudent()));
         if (student== null){
             throw new ValidationException("Studentul nu exista!");
         }

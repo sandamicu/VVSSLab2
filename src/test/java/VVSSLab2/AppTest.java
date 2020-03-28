@@ -19,8 +19,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
+public class AppTest {
     private StudentValidator studentValidator;
     private TemaValidator temaValidator;
     String filenameStudent = "fisiere/Studenti.xml";
@@ -45,16 +44,111 @@ public class AppTest
 
     @Test
     public void testStudent() {
-        Student student = new Student("1234", "Sanda", 934, "sanda@gmail.com");
+        Student student = new Student(0, "Pop Ana-Maria", 0, "ana@gmail.com");
+        assertEquals(service.addStudent(student), student);
+    }
+
+    @Test
+    public void testStudentSuccess_IDMAX() {
+        Student student = new Student(2147483647, "Pop Ana-Maria", 0, "ana@gmail.com");
+        assertEquals(service.addStudent(student), student);
+    }
+
+    @Test
+    public void testStudentFail_IDNegative() {
+        Student student = new Student(-1, "Pop Ana-Maria", 0, "ana@gmail.com");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Id incorect!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testStudentFail_IDMAX() {
+        Student student = new Student(2147483647 + 1, "Pop Ana-Maria", 0, "ana@gmail.com");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Id incorect!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testStudentSuccess_Name() {
+        Student student = new Student(0, "Ana", 0, "ana@gmail.com");
+        assertEquals(service.addStudent(student), student);
+    }
+
+    @Test
+    public void testStudentFail_Name() {
+        Student student = new Student(0, "An!", 0, "ana@gmail.com");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Nume incorect!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testStudentSuccess_GroupMAX() {
+        Student student = new Student(0, "Pop Ana-Maria", 2147483647, "sanda@gmail.com");
         assertEquals(service.addStudent(student), student);
     }
 
     @Test
     public void testStudentFail() {
-        Student student = new Student("1234", "Sanda", -934, "sanda@gmail.com");
+        Student student = new Student(0, "Pop Ana-Maria", -1, "ana@gmail.com");
         Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
 
         String expectedMessage = "Grupa incorecta!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testStudentFail_GroupMAX() {
+        Student student = new Student(0, "Pop Ana-Maria", 2147483647 + 1, "sanda@gmail.com");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Grupa incorecta!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testStudentFail_Email0() {
+        Student student = new Student(0, "Pop Ana-Maria", 0, "ana.com");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Email incorect!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testStudentFail_Email1() {
+        Student student = new Student(0, "Pop Ana-Maria", 0, "gmail.com");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Email incorect!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void testStudentFail_Email2() {
+        Student student = new Student(0, "Pop Ana-Maria", 0, "ana@gmail");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Email incorect!";
         String actualMessage = exception.getMessage();
 
         TestCase.assertTrue(actualMessage.contains(expectedMessage));

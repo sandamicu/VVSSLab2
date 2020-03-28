@@ -101,7 +101,7 @@ public class UI {
     private void adaugaStudent() throws ValidationException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti id student: ");
-        String idStudent = scanner.next();
+        Integer idStudent = scanner.nextInt();
         if (service.findStudent(idStudent) != null) {
             throw new ValidationException("Studentul exista!");
         }
@@ -127,7 +127,7 @@ public class UI {
     private void stergeStudent() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti id-ul student: pe care doriti sa il stergeti: ");
-        String id = scanner.next();
+        Integer id = scanner.nextInt();
         Student student = service.deleteStudent(id);
         if (student == null) {
             System.out.println("Studentul nu exista!");
@@ -142,7 +142,7 @@ public class UI {
     private void cautareStudent() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti id-ul studentului: ");
-        String id = scanner.next();
+        Integer id = scanner.nextInt();
         Student student = service.findStudent(id);
         if (student == null) {
             System.out.println("Studentul nu exista!");
@@ -157,7 +157,7 @@ public class UI {
     private void updateStudent() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti id-ul studentului pe care doriti sa il modificati: ");
-        String id = scanner.next();
+        Integer id = scanner.nextInt();
         System.out.println("Introduceti datele noi");
         System.out.print("Introduceti numele: ");
         scanner.nextLine();

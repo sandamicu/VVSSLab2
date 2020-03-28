@@ -5,7 +5,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-public class StudentXMLRepo extends AbstractXMLRepository<String, Student> {
+public class StudentXMLRepo extends AbstractXMLRepository<Integer, Student> {
     /**
      * Class constructor
      * @param filename - numele fisierului
@@ -34,13 +34,13 @@ public class StudentXMLRepo extends AbstractXMLRepository<String, Student> {
                 .item(0)
                 .getTextContent();
 
-        return new Student(studentId, nume, Integer.parseInt(grupa), email);
+        return new Student(Integer.parseInt(studentId), nume, Integer.parseInt(grupa), email);
     }
 
     @Override
     public Element createElementfromEntity(Document document, Student entity) {
         Element e = document.createElement("student");
-        e.setAttribute("idStudent", entity.getID());
+        e.setAttribute("idStudent", entity.getID().toString());
 
         Element nume = document.createElement("nume");
         nume.setTextContent(entity.getNume());
