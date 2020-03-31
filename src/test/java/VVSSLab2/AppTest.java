@@ -87,7 +87,7 @@ public class AppTest {
         assertEquals(service.addStudent(student), student);
     }
 
-    // Test for student fails when name=null: TestCase #1
+    // Test for student fails when name=null: TestCase #21
     @Test
     public void testStudentFail_NameNull() {
         Student student = new Student(0, null, 0, "ana@gmail.com");
@@ -99,7 +99,7 @@ public class AppTest {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
     }
 
-    // Test for student fails when name="": TestCase #1
+    // Test for student fails when name="": TestCase #20
     @Test
     public void testStudentFail_NameEmpty() {
         Student student = new Student(0, "", 0, "ana@gmail.com");
@@ -192,7 +192,7 @@ public class AppTest {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
     }
 
-    // Test for student fails when email=null: TestCase #1
+    // Test for student fails when email=null: TestCase #23
     @Test
     public void testStudentFail_EmailNull() {
         Student student = new Student(0, "Pop Ana-Maria", 0, null);
@@ -204,7 +204,7 @@ public class AppTest {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
     }
 
-    // Test for student fails when email="": TestCase #1
+    // Test for student fails when email="": TestCase #22
     @Test
     public void testStudentFail_EmailEmpty() {
         Student student = new Student(0, "Pop Ana-Maria", 0, "");
