@@ -99,6 +99,19 @@ public class AppTest {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    // Test for student fails when name="": TestCase #1
+    @Test
+    public void testStudentFail_NameEmpty() {
+        Student student = new Student(0, "", 0, "ana@gmail.com");
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Nume incorect!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+
     // Test for student fail when name=An!: TestCase #8
     @Test
     public void testStudentFail_Name() {
@@ -182,7 +195,19 @@ public class AppTest {
     // Test for student fails when email=null: TestCase #1
     @Test
     public void testStudentFail_EmailNull() {
-        Student student = new Student(0, "Pop Ana-Maria", 0, "null");
+        Student student = new Student(0, "Pop Ana-Maria", 0, null);
+        Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
+
+        String expectedMessage = "Email incorect!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    // Test for student fails when email="": TestCase #1
+    @Test
+    public void testStudentFail_EmailEmpty() {
+        Student student = new Student(0, "Pop Ana-Maria", 0, "");
         Exception exception = assertThrows(ValidationException.class, () -> service.addStudent(student));
 
         String expectedMessage = "Email incorect!";
