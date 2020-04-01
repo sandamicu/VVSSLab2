@@ -2,9 +2,12 @@ package VVSSLab2;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import VVSSLab2.domain.Nota;
 import VVSSLab2.domain.Student;
+import VVSSLab2.domain.Tema;
 import VVSSLab2.repository.NotaXMLRepo;
 import VVSSLab2.repository.StudentXMLRepo;
 import VVSSLab2.repository.TemaXMLRepo;
@@ -46,11 +49,24 @@ public class AssignmentTests {
     // Test for assignment success
     @Test
     public void testAssignment_success() {
+        Tema tema = new Tema("1", "description", 5 ,4);
+        Tema response = service.addTema(tema);
+
+        assertEquals(tema, response);
+        System.out.println();
     }
 
     // Test for assignment fail
     @Test
     public void testAssignment_fail() {
+        Tema tema = new Tema("1", "description", 15 ,4);
 
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Deadlineul trebuie sa fie intre 1-14.";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
     }
 }
