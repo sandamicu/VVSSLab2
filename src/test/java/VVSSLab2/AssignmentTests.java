@@ -160,4 +160,43 @@ public class AssignmentTests {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
         System.out.println();
     }
+
+    @Test
+    public void testAssignment_fail_SaptPrimireSmaller() {
+        Tema tema = new Tema("1", "descriere", 1 ,0);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Saptamana primirii trebuie sa fie intre 1-14.";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
+    @Test
+    public void testAssignment_fail_SaptPrimireGreater() {
+        Tema tema = new Tema("1", "descriere", 1 ,15);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Saptamana primirii trebuie sa fie intre 1-14.";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
+    @Test
+    public void testAssignment_fail_SaptPrimireGreaterThanDeadline() {
+        Tema tema = new Tema("1", "descriere", 3 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Saptamana primirii trebuie sa fie intre 1-14.";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
 }
