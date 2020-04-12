@@ -69,4 +69,32 @@ public class AssignmentTests {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
         System.out.println();
     }
+
+    @Test
+    public void testAssignment_fail_IdNull() {
+        Tema tema = new Tema(null, "description", 14 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Numar tema invalid!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+    @Test
+    public void testAssignment_fail_IdEmpty() {
+        Tema tema = new Tema("", "description", 14 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Numar tema invalid!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
+
+
 }
