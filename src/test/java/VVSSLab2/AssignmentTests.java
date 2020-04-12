@@ -56,20 +56,6 @@ public class AssignmentTests {
         System.out.println();
     }
 
-    // Test for assignment fail
-    @Test
-    public void testAssignment_fail_Greater() {
-        Tema tema = new Tema("1", "description", 15 ,4);
-
-        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
-
-        String expectedMessage = "Deadlineul trebuie sa fie intre 1-14.";
-        String actualMessage = exception.getMessage();
-
-        TestCase.assertTrue(actualMessage.contains(expectedMessage));
-        System.out.println();
-    }
-
     @Test
     public void testAssignment_fail_IdNull() {
         Tema tema = new Tema(null, "description", 14 ,4);
@@ -122,7 +108,56 @@ public class AssignmentTests {
         System.out.println();
     }
 
+    // Test for assignment fail
+    @Test
+    public void testAssignment_fail() {
+        Tema tema = new Tema("1", "description", 15 ,4);
 
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
 
+        String expectedMessage = "Deadlineul trebuie sa fie intre 1-14.";
+        String actualMessage = exception.getMessage();
 
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
+    @Test
+    public void testAssignment_fail_DeadlineSmaller() {
+        Tema tema = new Tema("1", "description", 0 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Deadlineul trebuie sa fie intre 1-14.";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
+    @Test
+    public void testAssignment_fail_DescriereNull() {
+        Tema tema = new Tema("1", null, 1 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Descriere invalida!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
+    @Test
+    public void testAssignment_fail_DescriereEmpty() {
+        Tema tema = new Tema("1", "", 1 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Descriere invalida!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
 }
