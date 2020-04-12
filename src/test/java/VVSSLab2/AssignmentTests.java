@@ -58,7 +58,7 @@ public class AssignmentTests {
 
     // Test for assignment fail
     @Test
-    public void testAssignment_fail() {
+    public void testAssignment_fail_Greater() {
         Tema tema = new Tema("1", "description", 15 ,4);
 
         Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
@@ -82,6 +82,7 @@ public class AssignmentTests {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
         System.out.println();
     }
+
     @Test
     public void testAssignment_fail_IdEmpty() {
         Tema tema = new Tema("", "description", 14 ,4);
@@ -94,6 +95,33 @@ public class AssignmentTests {
         TestCase.assertTrue(actualMessage.contains(expectedMessage));
         System.out.println();
     }
+
+    @Test
+    public void testAssignment_fail_IdNegative() {
+        Tema tema = new Tema("-1", "description", 14 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Numar tema invalid!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
+    @Test
+    public void testAssignment_fail_IdNotInt() {
+        Tema tema = new Tema("2.5", "description", 14 ,4);
+
+        Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
+
+        String expectedMessage = "Numar tema invalid!";
+        String actualMessage = exception.getMessage();
+
+        TestCase.assertTrue(actualMessage.contains(expectedMessage));
+        System.out.println();
+    }
+
 
 
 
