@@ -188,7 +188,7 @@ public class AssignmentTests {
     }
 
     @Test
-    public void testAssignment_fail_SaptPrimireGreaterThanDeadline() {
+    public void testAssignment_fail_SaptPrimireGreaterThanDead() {
         Tema tema = new Tema("1", "descriere", 3 ,4);
 
         Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
