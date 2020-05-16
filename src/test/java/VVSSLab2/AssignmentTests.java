@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
 import VVSSLab2.domain.Nota;
 import VVSSLab2.domain.Student;
 import VVSSLab2.domain.Tema;
@@ -18,9 +17,8 @@ import VVSSLab2.validation.StudentValidator;
 import VVSSLab2.validation.TemaValidator;
 import VVSSLab2.validation.ValidationException;
 import junit.framework.TestCase;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for Assignments.
@@ -51,13 +49,6 @@ public class AssignmentTests {
     // Test for assignment success
     @Test
     public void testAssignment_success() {
-        studentValidator = new StudentValidator();
-        temaValidator = new TemaValidator();
-        studentXMLRepository = new StudentXMLRepo(filenameStudent);
-        temaXMLRepository = new TemaXMLRepo(filenameTema);
-        notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
-        notaXMLRepository = new NotaXMLRepo(filenameNota);
-        service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         Tema tema = new Tema("1", "description", 5 ,4);
         Tema response = service.addTema(tema);
 
@@ -67,13 +58,6 @@ public class AssignmentTests {
 
     @Test
     public void testAssignment_fail_IdNull() {
-        studentValidator = new StudentValidator();
-        temaValidator = new TemaValidator();
-        studentXMLRepository = new StudentXMLRepo(filenameStudent);
-        temaXMLRepository = new TemaXMLRepo(filenameTema);
-        notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
-        notaXMLRepository = new NotaXMLRepo(filenameNota);
-        service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         Tema tema = new Tema(null, "description", 14 ,4);
 
         Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
@@ -87,13 +71,6 @@ public class AssignmentTests {
 
     @Test
     public void testAssignment_fail_IdEmpty() {
-        studentValidator = new StudentValidator();
-        temaValidator = new TemaValidator();
-        studentXMLRepository = new StudentXMLRepo(filenameStudent);
-        temaXMLRepository = new TemaXMLRepo(filenameTema);
-        notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
-        notaXMLRepository = new NotaXMLRepo(filenameNota);
-        service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
         Tema tema = new Tema("", "description", 14 ,4);
 
         Exception exception = assertThrows(ValidationException.class, () -> service.addTema(tema));
