@@ -34,27 +34,3 @@ Nota: 9.4
 Predata in saptamana: 114
 Deadline: 2
 Feedback: feedback
-
-Tema: 1
-Nota: 9.4
-Predata in saptamana: 114
-Deadline: 2
-Feedback: feedback
-
-Tema: 1
-Nota: 9.4
-Predata in saptamana: 114
-Deadline: 2
-Feedback: feedback
-
-Tema: 1
-Nota: 9.4
-Predata in saptamana: 114
-Deadline: 2
-Feedback: feedback
-
-Tema: 1
-Nota: 9.4
-Predata in saptamana: 114
-Deadline: 2
-Feedback: feedback
